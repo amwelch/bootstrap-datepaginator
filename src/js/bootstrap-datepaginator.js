@@ -171,6 +171,9 @@
 			event.preventDefault();
 			var target = $(event.target);
 			var classList = target.attr('class');
+                        if (classList.indexOf('dp-no-select') != -1){
+                            return;
+                        }
 			if (classList.indexOf('dp-nav-left') != -1) {
 				this._back();
 			}
@@ -193,12 +196,12 @@
 		},
 
 		_back: function() {
-			this._setSelectedDate(this.options.selectedDate.clone().subtract('day', 1));
+			this._setSelectedDate(this.options.selectedDate.clone().subtract('day', 7));
 			this._render();
 		},
 
 		_forward: function() {
-			this._setSelectedDate(this.options.selectedDate.clone().add('day', 1));
+			this._setSelectedDate(this.options.selectedDate.clone().add('day', 7));
 			this._render();
 	    },
 
@@ -289,7 +292,7 @@
 					$a.addClass('dp-divider');
 				}
 				if (item.isOffDay && self.options.showOffDays) {
-					$a.addClass('dp-off');
+					$a.addClass('dp-no-select');
 				}
 				if (item.isSelected && self.options.showCalendar) {
 					$a.append(self.$calendar);
@@ -304,7 +307,6 @@
 					$a.addClass('dp-no-select');
 				}
 				$a.append(item.text);
-
 				self.$wrapper.append($(self._template.listItem).append($a));
 			});
 
