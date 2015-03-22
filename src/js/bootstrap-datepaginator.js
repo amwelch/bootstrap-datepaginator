@@ -349,8 +349,9 @@
 		_buildData: function() {
 
 			var viewWidth = (this.options.width - ((this.options.selectedItemWidth - this.options.itemWidth) + (this.options.navItemWidth * 2))),
-				units = Math.floor(viewWidth / this.options.itemWidth),
-				unitsPerSide = parseInt(units / 2),
+				//We only want to show the current day
+				units = 1,
+				unitsPerSide = 0,
 				adjustedItemWidth = Math.floor(viewWidth / units),
 				adjustedSelectedItemWidth = Math.floor(this.options.selectedItemWidth + (viewWidth - (units * adjustedItemWidth))),
 				today = moment().startOf('day'),
